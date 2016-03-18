@@ -7,15 +7,16 @@
 </head>
     <body ng-app="todo">
         <div class="todo-body" ng-controller="todoCTRL">
-            <input class="todo-input" placeholder="Digite..." ng-model="vm.row.value" ng-keypress="add($event)">
+            <input class="todo-input input-60" placeholder="Digite..." ng-model="vm.row.value" ng-keypress="add($event)">
             <div class="todo-rows">
                 <div class="todo-item" ng-repeat="row in vm.filter">
-                    <div class="item-text wh-80" ng-class="row.status == 'C' ? 'finish' : '' ">
+                    <div class="item-text wh-70" ng-class="row.status == 'C' ? 'finish' : '' ">
                         {{row.value}}
                     </div>
-                    <div class="item-option wh-20">
-                        <button class="todo-btn wh-30 ht-80 btn-cicle" ng-click="change(row.id)"><i class="fa" ng-class="row.status == 'C' ? 'fa-close' : 'fa-check' "></i></button>
-                        <button class="todo-btn wh-30 ht-80 btn-cicle" ng-click="remove(row.id)"><i class="fa fa-minus"></i></button>
+                    <div class="item-option wh-30">
+                        <button class="todo-btn wh-30 ht-60 btn-cicle" ng-click="check(row.id)"><i class="fa" ng-class="row.status == 'C' ? 'fa-close' : 'fa-check' "></i></button>
+                        <button class="todo-btn wh-30 ht-60 btn-cicle" ng-click="edit(row.id)"><i class="fa fa-pencil"></i></button>
+                        <button class="todo-btn wh-30 ht-60 btn-cicle" ng-click="remove(row.id)"><i class="fa fa-minus"></i></button>
                     </div>
                 </div>
                 <div class="todo-item">
@@ -23,9 +24,9 @@
                         Total de Items: {{vm.filter.length}}
                     </div>
                     <div class="item-text wh-60 right">
-                        <button class="todo-btn ht-80" ng-click="filter()">All</button>
-                        <button class="todo-btn ht-80" ng-click="filter('O')">Active</button>
-                        <button class="todo-btn ht-80" ng-click="filter('C')">Finished</button>
+                        <button class="todo-btn wh-20 ht-80" ng-click="filter()">All</button>
+                        <button class="todo-btn wh-20 ht-80" ng-click="filter('O')">Active</button>
+                        <button class="todo-btn wh-30 ht-80" ng-click="filter('C')">Finished</button>
                     </div>
                 </div>
             </div>

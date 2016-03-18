@@ -8,8 +8,12 @@ app.controller('todoCTRL', ['$scope', function($scope){
 
     $scope.add = function(event){
         if(event.which == 13 && $scope.vm.row.value !== ""){
-            $scope.vm.row.id = rows.length;
-            rows.push($scope.vm.row);
+            if($scope.vm.row.id == null){
+                $scope.vm.row.id = rows.length;
+                rows.push($scope.vm.row);
+            }else{
+                rows[$scope.vm.row.id].value = $scope.vm.row.value;
+            }
             $scope.vm.row = {id: null, status:'O', value:""};
         }
     };
@@ -19,12 +23,17 @@ app.controller('todoCTRL', ['$scope', function($scope){
         $scope.vm.filter = rows;
     };
 
-    $scope.change = function(id){
+    $scope.check = function(id){
         if(rows[id].status == 'O')
             rows[id].status = 'C';
         else
             rows[id].status = 'O';
         $scope.vm.filter = rows;
+    };
+
+    $scope.edit = function(id){
+        $scope.vm.row.id = id;
+        $scope.vm.row.value = rows[id].value;
     };
 
     $scope.filter = function(status){
